@@ -256,7 +256,7 @@
     .show-full .bug-full-desc { display: inline; }
     .bug-desc {
       display: none;
-      font-size: 15px; color: var(--muted);
+      font-size: 17px; color: var(--muted);
       padding: 0.4rem 0 0.2rem 0;
       line-height: 1.7;
       border-top: 1px dashed var(--rule);
@@ -473,8 +473,8 @@
             <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Lexical scope exposure in SES sandbox</span>
           </div>
           <div class="bug-desc">
-            Discovered via <strong>Strategy 5</strong> of <strong><em>SandVenture: Escaping JavaScript Sandboxes with Objective-driven Input Generation</em></strong>.
-            Web pages and extensions using <strong><code>ses</code></strong> and the <strong>Compartment API</strong> to evaluate
+            Discovered via <strong>Strategy 5</strong> of our <strong>IEEE EuroS&amp;P 2026</strong> paper, <strong><em>SandVenture: Escaping JavaScript Sandboxes with Objective-driven Input Generation</em></strong>.
+            Web pages and extensions using <strong>ses</strong> and the <strong>Compartment API</strong> to evaluate
             <strong>third-party code</strong> in an isolated environment inadvertently expose
             const, let, and class bindings
             declared in the <strong>top-level scope</strong> of a &lt;script&gt; tag to the
