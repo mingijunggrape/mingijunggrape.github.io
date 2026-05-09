@@ -17,6 +17,7 @@
       --rule:    #e6e6e6;
       --accent:  #2a5885;
       --bg:      #ffffff;
+      --bg-alt:  #f7f7f7;
       --serif:   'EB Garamond', Georgia, serif;
       --sans:    'DM Sans', system-ui, sans-serif;
     }
@@ -135,9 +136,8 @@
     /* easter egg 피드백 도트 */
     .click-dots { display: none; }
 
-    section { padding: 3.5rem 0; border-bottom: 1px solid var(--rule); }
-    section:last-of-type { border-bottom: none; }
-    #education { padding: 1.5rem 0; }
+    section { padding: 2rem 0 2.5rem; }
+    section:nth-of-type(even) { background: var(--bg-alt); }
 
     .sec-head {
       font-family: var(--serif);
@@ -305,7 +305,6 @@
 </nav>
 
 <div class="page">
-
   <div class="hero">
     <div>
       <h1>Hi. I'm <strong>Mingi Jung</strong></h1>
@@ -346,9 +345,11 @@
       </div>
     </div>
   </div>
+</div>
 
-  <!-- EDUCATION -->
-  <section id="education">
+<!-- EDUCATION -->
+<section id="education">
+  <div class="page">
     <h2 class="sec-head">Education</h2>
     <div class="edu-list">
       <div class="edu-row">
@@ -372,10 +373,12 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- PUBLICATIONS -->
-  <section id="publications">
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="page">
     <h2 class="sec-head">Publications</h2>
 
     <div class="pub-list" id="pubList">
@@ -385,10 +388,12 @@
         <p class="pub-venue">In <em>Proceedings of the IEEE European Symposium on Security and Privacy (<strong>IEEE EuroS&amp;P</strong>)</em>, 2026 (<strong>Acceptance Rate: 17.83%</strong>)</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- AWARDS -->
-  <section id="honors">
+<!-- AWARDS -->
+<section id="honors">
+  <div class="page">
     <h2 class="sec-head">Honors</h2>
     <div class="award-list">
       <div class="award-row">
@@ -396,10 +401,12 @@
         <span class="award-meta">UNIST &nbsp;·&nbsp; 2026.02.04</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- SECURITY BUGS -->
-  <section id="security">
+<!-- SECURITY BUGS -->
+<section id="security">
+  <div class="page">
     <div class="pub-header">
       <h2 class="sec-head">Security Bugs</h2>
       <div class="pub-filter" id="bugFilter">
@@ -509,10 +516,12 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact">
+<!-- CONTACT -->
+<section id="contact">
+  <div class="page">
     <h2 class="sec-head">Contact</h2>
     <div>
       <div class="contact-row">
@@ -528,9 +537,8 @@
         <span><a href="https://github.com/mingijunggrape" target="_blank">github.com/mingijunggrape</a></span>
       </div>
     </div>
-  </section>
-
-</div>
+  </div>
+</section>
 
 <footer>
   <div class="page">
