@@ -4,22 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mingi Jung</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --text:    #1c1c1c;
-      --sub:     #4a4a4a;
-      --muted:   #767676;
-      --faint:   #a8a8a8;
-      --rule:    #e6e6e6;
-      --accent:  #2a5885;
-      --bg:      #ffffff;
-      --bg-alt:  #f7f7f7;
-      --serif:   'EB Garamond', Georgia, serif;
-      --sans:    'DM Sans', system-ui, sans-serif;
+      --text:   #1c1c1c;
+      --sub:    #4a4a4a;
+      --muted:  #767676;
+      --faint:  #a8a8a8;
+      --rule:   #e6e6e6;
+      --accent: #2a5885;
+      --bg:     #ffffff;
+      --serif:  -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --sans:   -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -36,73 +33,84 @@
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    nav {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(255,255,255,0.94);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--rule);
-    }
-    .nav-inner {
-      max-width: 1100px; margin: 0 auto; padding: 0 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 50px;
-    }
-    .nav-name { font-family: var(--serif); font-size: 20px; color: var(--text); }
-    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
-    .nav-links a {
-      font-size: 15px; letter-spacing: 0.07em; text-transform: uppercase;
-      color: var(--muted); text-decoration: none; transition: color .18s;
-    }
-    .nav-links a:hover { color: var(--text); }
-
-    .page { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-
-    .hero {
+    /* ── 전체 2단 레이아웃 ── */
+    .layout {
       display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 3.5rem;
-      align-items: start;
-      padding: 5rem 0 4rem;
+      grid-template-columns: 270px 1fr;
+      max-width: 1240px;
+      margin: 0 auto;
+      min-height: 100vh;
     }
 
-    .hero h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.6rem, 5vw, 3.6rem);
-      font-weight: 400; line-height: 1.2;
+    /* ── 사이드바 ── */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 2.8rem 1.6rem 2rem;
+      border-right: 1px solid var(--rule);
+    }
+
+    .sb-photo {
+      width: 178px; height: 238px;
+      border-radius: 3px; overflow: hidden;
+      border: 1px solid var(--rule);
       margin-bottom: 1.1rem;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      user-select: none;
+    }
+    .sb-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 30%;
+      display: block; pointer-events: none;
+    }
+    .sb-photo-ph {
+      width: 100%; height: 100%;
+      background: #f5f5f5;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
+    }
+    .sb-photo-ph-icon { font-size: 36px; opacity: 0.2; }
+    .sb-photo-ph-label { font-size: 10px; color: var(--faint); letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .sb-name {
+      font-family: var(--serif);
+      font-size: 2.1rem; font-weight: 400;
+      line-height: 1.2; margin-bottom: 0.25rem;
+    }
+    .sb-title {
+      font-size: 15.5px; color: var(--sub);
+      line-height: 1.5; margin-bottom: 0.1rem;
+    }
+    .sb-affil {
+      font-size: 14.5px; color: var(--muted);
     }
 
-    .verse {
-      display: flex; gap: 0.7rem; align-items: flex-start;
-      margin-bottom: 1.5rem;
-    }
-    .verse-bar {
-      flex-shrink: 0; width: 2px;
-      background: var(--accent); border-radius: 1px;
-      align-self: stretch; min-height: 36px;
-    }
-    .verse-text {
-      font-family: var(--serif); font-style: italic;
-      font-size: 17px; color: var(--sub); line-height: 1.65;
-    }
-    .verse-ref {
-      display: block; font-style: normal;
-      font-size: 13px; color: var(--faint); margin-top: 3px;
+    .sb-divider {
+      border: none; border-top: 1px solid var(--rule); margin: 1rem 0;
     }
 
-    .hero-bio {
-      font-size: 20px; color: var(--sub);
-      line-height: 1.85; margin-bottom: 1.6rem;
+    .sb-interests {
+      font-size: 15px; color: var(--sub); line-height: 1.7;
+      margin-bottom: 1rem;
     }
-    .hero-meta {
-      display: flex; flex-direction: column; gap: 4px;
-      font-size: 18px; color: var(--muted);
-      margin-bottom: 1.8rem;
+
+    .sb-contact { display: flex; flex-direction: column; gap: 8px; }
+    .sb-contact-row {
+      display: flex; flex-direction: column; gap: 1px;
+      font-size: 15px; color: var(--sub);
     }
-    .hero-links { display: flex; gap: 7px; flex-wrap: wrap; }
+    .sb-contact-label {
+      font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    .sb-links { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 1rem; }
     .chip {
       display: inline-flex; align-items: center;
-      padding: 5px 14px; font-size: 16px; letter-spacing: 0.03em;
+      padding: 4px 12px; font-size: 13.5px;
       border: 1px solid var(--rule); border-radius: 2px;
       color: var(--sub); text-decoration: none; transition: all .18s;
     }
@@ -110,419 +118,384 @@
     .chip-dark { background: var(--text); color: #fff; border-color: var(--text); }
     .chip-dark:hover { background: #333; color: #fff; border-color: #333; }
 
-    .photo-wrap { padding-top: 0.4rem; }
-    .photo-frame {
-      width: 260px; height: 370px;
-      border-radius: 3px; overflow: hidden;
-      border: 1px solid var(--rule);
-      cursor: pointer;
-      transition: opacity 0.3s, border-color 0.2s;
-      user-select: none;
+    .sb-nav { margin-top: 1.4rem; display: flex; flex-direction: column; gap: 1px; }
+    .sb-nav a {
+      font-size: 14px; letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--faint); padding: 4px 0; display: block; transition: color .15s;
+      border-left: 2px solid transparent; padding-left: 8px;
     }
-    .photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; pointer-events: none; }
-    .photo-ph {
-      width: 100%; height: 100%;
-      background: #f5f5f5;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 8px;
-    }
-    .photo-ph-icon { font-size: 42px; opacity: 0.25; }
-    .photo-ph-label {
-      font-size: 11px; color: var(--faint);
-      letter-spacing: 0.08em; text-transform: uppercase;
-    }
+    .sb-nav a:hover { color: var(--accent); border-left-color: var(--accent); text-decoration: none; }
 
-    /* easter egg 피드백 도트 */
-    .click-dots { display: none; }
+    /* ── 메인 콘텐츠 ── */
+    .main { padding: 2.8rem 2.6rem 4rem; }
 
-    section { padding: 2rem 0 2.5rem; }
-    section:nth-of-type(even) { background: var(--bg-alt); }
+    section { margin-bottom: 2rem; }
 
     .sec-head {
-      font-family: var(--serif);
-      font-size: 1.9rem; font-weight: 400;
-      margin-bottom: 1.6rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 1px solid var(--rule);
+      font-family: var(--sans);
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
     }
 
-    .about-text { font-size: 15.5px; color: var(--sub); line-height: 1.9; }
-    .about-text p + p { margin-top: 0.9rem; }
-
+    /* Education */
     .edu-list { display: flex; flex-direction: column; }
     .edu-row {
       display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 1.5rem;
-      padding: 1.8rem 0;
+      grid-template-columns: 118px 1fr;
+      gap: 1rem;
+      padding: 0.65rem 0;
       border-bottom: 1px solid var(--rule);
-      align-items: center;
+      align-items: start;
     }
     .edu-row:last-child { border-bottom: none; }
-    .edu-year { font-size: 17px; color: var(--faint); white-space: nowrap; }
-    .edu-content {
-      display: flex; flex-direction: column;
-      justify-content: center; padding-top: 0rem;
-    }
-    .edu-degree {
-      font-family: var(--serif); font-size: 23px;
-      font-weight: 400; margin-bottom: 3px;
-    }
-    .edu-school { font-size: 18px; color: var(--muted); }
-    .edu-note   { font-size: 17px; color: var(--faint); font-style: italic; margin-top: 3px; }
+    .edu-year { font-size: 15px; color: var(--faint); white-space: nowrap; padding-top: 3px; }
+    .edu-degree { font-family: var(--serif); font-size: 20px; font-weight: 400; margin-bottom: 2px; }
+    .edu-school { font-size: 16px; color: var(--muted); }
+    .edu-note { font-size: 14.5px; color: var(--faint); font-style: italic; margin-top: 2px; }
 
-    .pub-header { display: flex; align-items: baseline; gap: 1.2rem; margin-bottom: 1.6rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--rule); }
-    .pub-header .sec-head { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-    .pub-filter { display: flex; gap: 6px; flex-wrap: wrap; }
+    /* Bio */
+    .bio-text {
+      font-size: 17px; color: var(--sub);
+      line-height: 1.85; margin-bottom: 0;
+    }
+
+    /* Publications */
+    .pub-num {
+      font-family: var(--sans); font-weight: 700;
+      color: var(--text); margin-right: 4px;
+    }
+    .pub-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+    .pub-header .sec-head { margin-bottom: 0; }
+    .pub-filter { display: flex; gap: 5px; }
     .f-btn {
-      padding: 4px 14px; font-family: var(--sans);
-      font-size: 16px; letter-spacing: 0.05em;
+      padding: 3px 11px; font-family: var(--sans);
+      font-size: 12.5px; letter-spacing: 0.05em;
       border: 1px solid var(--rule); background: transparent;
       color: var(--muted); cursor: pointer; border-radius: 2px; transition: all .18s;
     }
     .f-btn:hover, .f-btn.on { background: var(--text); color: #fff; border-color: var(--text); }
 
     .pub-list { display: flex; flex-direction: column; }
-    .pub-item {
-      padding: 0.6rem 0 1.4rem;
-      border-bottom: 1px solid var(--rule);
-    }
-    .pub-title {
-      font-size: 20px; font-weight: 600;
-      line-height: 1.5; margin-bottom: 3px; color: var(--text);
-    }
+    .pub-item { padding: 0.45rem 0 0.8rem; border-bottom: 1px solid var(--rule); }
+    .pub-title { font-size: 17px; font-weight: 600; line-height: 1.45; margin-bottom: 2px; color: var(--text); }
     .pub-title em { font-style: italic; font-weight: 400; }
-    .pub-authors { font-size: 18px; color: var(--sub); margin-bottom: 3px; }
+    .pub-authors { font-size: 16px; color: var(--sub); margin-bottom: 2px; }
     .pub-authors strong { color: var(--text); font-weight: 600; }
-    .pub-venue { font-size: 16.5px; color: var(--sub); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pub-venue { font-size: 15.5px; color: var(--sub); }
     .pub-venue em { font-style: italic; }
     .pub-venue strong { font-weight: 600; color: var(--text); }
-    .pub-links { display: flex; gap: 10px; margin-top: 6px; }
+    .pub-links { display: flex; gap: 8px; margin-top: 5px; }
     .pub-lnk {
       font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase;
       color: var(--muted); border-bottom: 1px solid transparent; transition: all .15s;
     }
     .pub-lnk:hover { color: var(--accent); border-bottom-color: var(--accent); text-decoration: none; }
 
-    .contact-row {
-      display: flex; align-items: baseline; gap: 2rem;
-      padding: 0.9rem 0; border-bottom: 1px solid var(--rule); font-size: 18.5px;
-    }
-    .ck {
-      min-width: 90px; font-size: 15px;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint);
-    }
-
-    /* ── Honors ── */
+    /* Honors */
     .award-list { display: flex; flex-direction: column; }
     .award-row {
-      display: grid;
-      grid-template-columns: 1fr 140px;
-      gap: 0 2rem;
-      padding: 0.9rem 0;
-      border-bottom: 1px solid var(--rule);
-      align-items: baseline;
+      display: grid; grid-template-columns: 1fr 130px;
+      gap: 0 1.5rem; padding: 0.45rem 0;
+      border-bottom: 1px solid var(--rule); align-items: baseline;
     }
-    .award-name {
-      font-size: 18px; color: var(--text); font-weight: 500;
-    }
-    .award-meta {
-      font-size: 15px; color: var(--faint); text-align: right; white-space: nowrap;
-    }
+    .award-name { font-size: 17px; color: var(--text); font-weight: 500; }
+    .award-meta { font-size: 15px; color: var(--faint); text-align: right; white-space: nowrap; }
 
-    /* ── Security Bugs ── */
-    .bug-group { margin-bottom: 2.2rem; }
+    /* Security Bugs */
+    .bug-group { margin-bottom: 1.4rem; }
     .bug-group:last-child { margin-bottom: 0; }
     .bug-category {
-      font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--text); margin-bottom: 0.6rem;
+      font-size: 13px; letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.35rem; font-weight: 600;
     }
     .bug-list { display: flex; flex-direction: column; }
     .bug-row {
-      display: flex; align-items: baseline; gap: 0.7rem;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--rule);
-      font-size: 18px;
+      display: flex; align-items: baseline; gap: 0.6rem;
+      padding: 0.32rem 0; border-bottom: 1px solid var(--rule); font-size: 16px;
     }
     .bug-id {
-      font-size: 17.5px; font-weight: 500;
-      color: var(--accent); white-space: nowrap; min-width: 170px;
+      font-size: 15.5px; font-weight: 500;
+      color: var(--accent); white-space: nowrap; min-width: 150px;
     }
     .bug-id:hover { text-decoration: underline; }
-    .bug-sep { color: var(--faint); font-size: 16px; flex-shrink: 0; }
-    .bug-issuer { font-size: 17.5px; color: var(--sub); }
-    .bug-full-desc { display: none; font-size: 15px; color: var(--muted); }
+    .bug-sep { color: var(--faint); font-size: 14.5px; flex-shrink: 0; }
+    .bug-issuer { font-size: 15.5px; color: var(--sub); }
+    .bug-full-desc { display: none; font-size: 14px; color: var(--muted); }
     .show-full .bug-full-desc { display: inline; }
     .bug-desc {
-      display: none;
-      font-size: 17px; color: var(--muted);
-      padding: 0.4rem 0 0.2rem 0;
-      line-height: 1.7;
-      border-top: 1px dashed var(--rule);
-      margin-top: 0.4rem;
+      display: none; font-size: 16.5px; color: var(--muted);
+      padding: 0.35rem 0 0.15rem; line-height: 1.6;
+      border-top: 1px dashed var(--rule); margin-top: 0.3rem;
     }
     .show-desc .bug-desc { display: block; }
     .bug-row-wrap {
       display: flex; flex-direction: column;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--rule);
+      padding: 0.38rem 0; border-bottom: 1px solid var(--rule);
     }
-    .bug-row-wrap .bug-row {
-      padding: 0; border-bottom: none;
+    .bug-row-wrap .bug-row { padding: 0; border-bottom: none; }
+
+    /* Contact */
+    .contact-row {
+      display: flex; align-items: baseline; gap: 1.5rem;
+      padding: 0.42rem 0; border-bottom: 1px solid var(--rule);
+    }
+    .ck {
+      min-width: 65px; font-size: 11.5px;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint);
     }
 
     footer {
-      padding: 2.2rem 0; border-top: 1px solid var(--rule);
-      font-size: 15.5px; color: var(--faint);
+      padding: 1.2rem 0; border-top: 1px solid var(--rule);
+      font-size: 12.5px; color: var(--faint); margin-top: 1rem;
+      display: flex; justify-content: space-between;
     }
-    footer .page { display: flex; justify-content: space-between; align-items: center; }
 
-    @media (max-width: 620px) {
-      .hero { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 0; }
-      .photo-wrap { order: -1; }
-      .photo-frame { width: 110px; height: 135px; }
-      .edu-row { grid-template-columns: 1fr; gap: 3px; }
+    @media (max-width: 680px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar {
+        position: static; height: auto;
+        border-right: none; border-bottom: 1px solid var(--rule);
+        padding: 2rem 1.4rem;
+      }
+      .sb-photo { width: 100px; height: 130px; }
+      .main { padding: 2rem 1.4rem 3rem; }
+      .edu-row { grid-template-columns: 1fr; gap: 2px; }
       .edu-year { white-space: normal; }
-      .nav-links { gap: 1rem; }
-      footer .page { flex-direction: column; gap: 4px; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <a href="index.html" class="nav-name">Mingi Jung</a>
-    <ul class="nav-links">
-      <li><a href="#education">Education</a></li>
-      <li><a href="#publications">Publications</a></li>
-      <li><a href="#honors">Honors</a></li>
-      <li><a href="#security">Security Bugs</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+<div class="layout">
 
-<div class="page">
-  <div class="hero">
-    <div>
-      <h1>Hi. I'm <strong>Mingi Jung</strong></h1>
+  <!-- ── 사이드바 ── -->
+  <aside class="sidebar">
+    <div class="sb-photo" id="photoFrame">
+      <img src="images/profile.jpg" alt="Mingi Jung"
+           onerror="this.parentElement.innerHTML='<div class=\'sb-photo-ph\'><div class=\'sb-photo-ph-icon\'>🪪</div><span class=\'sb-photo-ph-label\'>Photo</span></div>'">
+    </div>
 
-      <p class="hero-bio">
+    <h1 class="sb-name">Mingi Jung</h1>
+    <p class="sb-title">M.S. Student</p>
+    <p class="sb-affil">WebSec Lab, UNIST</p>
+
+    <hr class="sb-divider">
+
+    <p class="sb-interests">
+      Web &amp; Browser Security<br>
+      Vulnerability Discovery<br>
+      CTF · Bug Bounty
+    </p>
+
+    <div class="sb-contact">
+      <div class="sb-contact-row">
+        <span class="sb-contact-label">Email</span>
+        <a href="mailto:wjdaslrl4475@unist.ac.kr">wjdaslrl4475@unist.ac.kr</a>
+      </div>
+      <div class="sb-contact-row">
+        <span class="sb-contact-label">Office</span>
+        <span style="color:var(--sub)">UNIST, Ulsan</span>
+      </div>
+    </div>
+
+    <nav class="sb-nav">
+      <a href="#education">Education</a>
+      <a href="#publications">Publications</a>
+      <a href="#honors">Honors</a>
+      <a href="#security">Security Bugs</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </aside>
+
+  <!-- ── 메인 콘텐츠 ── -->
+  <main class="main">
+
+    <!-- BIO -->
+    <section id="bio">
+      <p class="bio-text">
         I am a Master's student at the <a href="https://websec-lab.github.io/">Web Security Lab (WebSec Lab)</a>
         at <a href="https://www.unist.ac.kr/unist/index.do">UNIST</a>.
         My research focuses on Web Security and Browser Security, particularly on discovering emerging vulnerability classes
         and building automated systems to identify novel attack vectors.
-        
-        <br><br>Besides, I am an active CTF player and bug bounty hunter with a strong interest in practical offensive security techniques.
+        Besides, I am an active CTF player and bug bounty hunter with a strong interest in practical offensive security techniques.
         I enjoy exploring diverse attack scenarios and experimenting with real-world exploitation techniques.
       </p>
+    </section>
 
-      <div class="hero-meta">
-        <span>Ulsan National Institute of Science and Technology, Ulsan</span>
-        <span>✉ <a href="mailto:wjdaslrl4475@unist.ac.kr">wjdaslrl4475@unist.ac.kr</a></span>
-      </div>
-
-      <div class="hero-links">
-        <a href="https://github.com/mingijunggrape" class="chip chip-dark" target="_blank">GitHub</a>
-      </div>
-    </div>
-
-    <div class="photo-wrap">
-      <div class="photo-frame" id="photoFrame">
-        <img src="images/profile.jpg" alt="Mingi Jung"
-             onerror="this.parentElement.innerHTML='<div class=\'photo-ph\'><div class=\'photo-ph-icon\'>🪪</div><span class=\'photo-ph-label\'>Profile Photo</span></div>'">
-      </div>
-      <!-- easter egg 피드백 도트 -->
-      <div class="click-dots" id="clickDots">
-        <div class="click-dot" id="dot0"></div>
-        <div class="click-dot" id="dot1"></div>
-        <div class="click-dot" id="dot2"></div>
-        <div class="click-dot" id="dot3"></div>
-        <div class="click-dot" id="dot4"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- EDUCATION -->
-<section id="education">
-  <div class="page">
-    <h2 class="sec-head">Education</h2>
-    <div class="edu-list">
-      <div class="edu-row">
-        <div class="edu-year">2025.08 – present</div>
-        <div class="edu-content">
-          <p class="edu-degree">M.S. in Computer Science and Engineering</p>
-          <p class="edu-school">
-            <a href="https://www.unist.ac.kr/unist/index.do">Ulsan National Institute of Science and Technology</a>,
-            <a href="https://websec-lab.github.io/index.html">@UNIST WebSec Lab</a>
-          </p>
-          <p class="edu-note">Advisor: <a href="https://seongil-wi.github.io/">Seongil Wi</a></p>
-          <div style="height: 25px;"></div>
+    <!-- EDUCATION -->
+    <section id="education">
+      <h2 class="sec-head">Education</h2>
+      <div class="edu-list">
+        <div class="edu-row">
+          <div class="edu-year">2025.08 – present</div>
+          <div>
+            <p class="edu-degree">M.S. in Computer Science and Engineering</p>
+            <p class="edu-school">
+              <a href="https://www.unist.ac.kr/unist/index.do">Ulsan National Institute of Science and Technology</a>,
+              <a href="https://websec-lab.github.io/index.html">@UNIST WebSec Lab</a>
+            </p>
+            <p class="edu-note">Advisor: <a href="https://seongil-wi.github.io/">Seongil Wi</a></p>
+          </div>
+        </div>
+        <div class="edu-row">
+          <div class="edu-year">2021.03 – 2025.08</div>
+          <div>
+            <p class="edu-degree">B.S. in Industrial Security &amp; Police Science &amp; Crime Investigation Software</p>
+            <p class="edu-school"><a href="https://www.dongguk.edu/">Dongguk University, Korea</a></p>
+          </div>
         </div>
       </div>
-      <div style="height: 20px;"></div>
-      <div class="edu-row">
-        <div class="edu-year">2021.03 – 2025.08</div>
-        <div class="edu-content">
-          <p class="edu-degree">B.S. in Industrial Security & Police Science & Crime Investigation Software</p>
-          <p class="edu-school"><a href="https://www.dongguk.edu/">Dongguk University, Korea</a></p>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <h2 class="sec-head">Publications</h2>
+      <div class="pub-list">
+        <div class="pub-item">
+          <p class="pub-title"><span class="pub-num">[1]</span> BUIzz: Finding Policy Enforcement Bugs via Interaction Simulation on the Browser User Interface</p>
+          <p class="pub-authors"><strong>Mingi Jung</strong>, Donggyu Kim, Mijung Kim, Seongil Wi</p>
+          <p class="pub-venue">In <em>Proceedings of the USENIX Security Symposium (<strong>USENIX Security</strong>)</em>, 2026</p>
+        </div>
+        <div class="pub-item">
+          <p class="pub-title"><span class="pub-num">[2]</span> SandVenture: Escaping JavaScript Sandboxes with Objective-driven Input Generation</p>
+          <p class="pub-authors"><strong>Mingi Jung</strong>, Hyeon Heo, Seongil Wi</p>
+          <p class="pub-venue">In <em>Proceedings of the IEEE European Symposium on Security and Privacy (<strong>IEEE EuroS&amp;P</strong>)</em>, 2026 (<strong>Acceptance Rate: 17.83%</strong>)</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- PUBLICATIONS -->
-<section id="publications">
-  <div class="page">
-    <h2 class="sec-head">Publications</h2>
-
-    <div class="pub-list" id="pubList">
-      <div class="pub-item" data-type="conference">
-        <p class="pub-title">SandVenture: Escaping JavaScript Sandboxes with Objective-driven Input Generation <em>(to appear)</em></p>
-        <p class="pub-authors"><strong>Mingi Jung</strong>, Hyeon Heo, Seongil Wi</p>
-        <p class="pub-venue">In <em>Proceedings of the IEEE European Symposium on Security and Privacy (<strong>IEEE EuroS&amp;P</strong>)</em>, 2026 (<strong>Acceptance Rate: 17.83%</strong>)</p>
+    <!-- HONORS -->
+    <section id="honors">
+      <h2 class="sec-head">Honors</h2>
+      <div class="award-list">
+        <div class="award-row">
+          <span class="award-name">IBSM Award (Outstanding Graduate Student Award)</span>
+          <span class="award-meta">UNIST &nbsp;·&nbsp; 2026.02.04</span>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- AWARDS -->
-<section id="honors">
-  <div class="page">
-    <h2 class="sec-head">Honors</h2>
-    <div class="award-list">
-      <div class="award-row">
-        <span class="award-name">IBSM Award (Outstanding Graduate Student Award)</span>
-        <span class="award-meta">UNIST &nbsp;·&nbsp; 2026.02.04</span>
+    <!-- SECURITY BUGS -->
+    <section id="security">
+      <div class="pub-header">
+        <h2 class="sec-head">Security Bugs</h2>
+        <div class="pub-filter" id="bugFilter">
+          <button class="f-btn on" data-bg="selected">Selected</button>
+          <button class="f-btn" data-bg="all">Full</button>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- SECURITY BUGS -->
-<section id="security">
-  <div class="page">
-    <div class="pub-header">
-      <h2 class="sec-head">Security Bugs</h2>
-      <div class="pub-filter" id="bugFilter">
-        <button class="f-btn on" data-bg="selected">Selected</button>
-        <button class="f-btn" data-bg="all">Full</button>
-      </div>
-    </div>
-
-    <div class="bug-group" data-bg="cve">
-      <p class="bug-category">CVE</p>
-      <div class="bug-list">
-        <div class="bug-row">
-          <a href="https://github.com/aio-libs/aiohttp/security/advisories/GHSA-2vrm-gr82-f7m5" class="bug-id" target="_blank">CVE-2026-34514</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">aio-libs (aiohttp)</span>
-          <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">HTTP header injection via CRLF</span>
-        </div>
-        <div class="bug-row">
-          <a href="https://www.oracle.com/security-alerts/cpujan2026.html#:~:text=Mingijung%20of%20WebSec%20Lab%3A%20CVE%2D2026%2D21932" class="bug-id" target="_blank">CVE-2026-21932</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Oracle (Oracle Java SE)</span>
-          <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Unauthorized data modification via network access</span>
-        </div>
-        <div class="bug-row">
-          <a href="https://www.mozilla.org/en-US/security/advisories/mfsa2026-01/#:~:text=Reporter-,Mingi%20Jung%20(%EC%A0%95%EB%AF%BC%EA%B8%B0%EC%9E%85%EB%8B%88%EB%8B%A4),-Impact" class="bug-id" target="_blank">CVE-2026-0877</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Mozilla (Firefox Browser)</span>
-          <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">DOM security mitigation bypass</span>
-        </div>
-        <div class="bug-row">
-          <a href="https://cve.naver.com/detail/cve-2025-69235.html#:~:text=like%20to%20thank-,Mingi%20Jung.,-%C2%A9%20NAVER%20Corp" class="bug-id" target="_blank">CVE-2025-69235</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Naver (Whale Browser)</span>
-          <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Same-Origin Policy bypass</span>
-        </div>
-        <div class="bug-row">
-          <a href="https://cve.naver.com/detail/cve-2025-69234.html#:~:text=like%20to%20thank-,Mingi%20Jung.,-%C2%A9%20NAVER%20Corp" class="bug-id" target="_blank">CVE-2025-69234</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Naver (Whale Browser)</span>
-          <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Iframe sandbox escape</span>
-        </div>
-        <div class="bug-row">
-          <a href="https://cve.naver.com/detail/cve-2025-62585.html#:~:text=like%20to%20thank-,Mingi%20Jung.,-%C2%A9%20NAVER%20Corp" class="bug-id" target="_blank">CVE-2025-62585</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Naver (Whale Browser)</span>
-          <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">CSP bypass</span>
-        </div>
-        <div class="bug-row">
-          <a href="https://cve.naver.com/detail/cve-2025-62584.html#:~:text=like%20to%20thank-,Mingi%20Jung.,-%C2%A9%20NAVER%20Corp" class="bug-id" target="_blank">CVE-2025-62584</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Naver (Whale Browser)</span>
-          <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Same-Origin Policy bypass</span>
-        </div>
-        <div class="bug-row">
-          <a href="https://cve.naver.com/detail/cve-2025-62583.html#:~:text=like%20to%20thank-,Mingi%20Jung.,-%C2%A9%20NAVER%20Corp" class="bug-id" target="_blank">CVE-2025-62583</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Naver (Whale Browser)</span>
-          <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Iframe sandbox escape</span>
-        </div>
-        <div class="bug-row">
-          <a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-53791#:~:text=Mingi%20Jung%20https%3A//github.com/mingijunggrape%20with%20WebSec%20https%3A//websec%2Dlab.github.io/" class="bug-id" target="_blank">CVE-2025-53791</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Microsoft (Edge Browser)</span>
-          <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Security feature bypass</span>
-        </div>
-        <div class="bug-row">
-          <a href="https://cve.naver.com/detail/cve-2025-53600.html#:~:text=like%20to%20thank-,Mingi%20Jung.,-%C2%A9%20NAVER%20Corp" class="bug-id" target="_blank">CVE-2025-53600</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Naver (Whale Browser)</span>
-          <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Same-Origin Policy bypass</span>
-        </div>
-        <div class="bug-row">
-          <a href="https://www.cve.org/CVERecord?id=CVE-2025-48980" class="bug-id" target="_blank">CVE-2025-48980</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Brave Software (Brave Browser)</span>
-          <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">SameSite cookie bypass</span>
-        </div>
-        <div class="bug-row-wrap" data-selected="true">
+      <div class="bug-group" data-bg="cve">
+        <p class="bug-category">CVE</p>
+        <div class="bug-list">
           <div class="bug-row">
-            <a href="https://github.com/advisories/GHSA-h9w6-f932-gq62#:~:text=Credits-,mingijunggrape,-Reporter" class="bug-id" target="_blank">CVE-2025-32792</a>
-            <span class="bug-sep">—</span><span class="bug-issuer">Endo (Secure ECMAScript)</span>
-            <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Lexical scope exposure in SES sandbox</span>
+            <a href="https://github.com/aio-libs/aiohttp/security/advisories/GHSA-2vrm-gr82-f7m5" class="bug-id" target="_blank">CVE-2026-34514</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">aio-libs (aiohttp)</span>
+            <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">HTTP header injection via CRLF</span>
           </div>
-          <div class="bug-desc">
-            Discovered via <strong>Strategy 5</strong> of our <strong>IEEE EuroS&amp;P 2026</strong> paper, <strong><em>SandVenture: Escaping JavaScript Sandboxes with Objective-driven Input Generation</em></strong>.
-            Web pages and extensions using <strong>ses</strong> and the <strong>Compartment API</strong> to evaluate
-            <strong>third-party code</strong> in an isolated environment inadvertently expose
-            const, let, and class bindings
-            declared in the <strong>top-level scope</strong> of a &lt;script&gt; tag to the
-            <strong>lexical scope</strong> of untrusted third-party code.
+          <div class="bug-row">
+            <a href="https://www.oracle.com/security-alerts/cpujan2026.html#:~:text=Mingijung%20of%20WebSec%20Lab%3A%20CVE%2D2026%2D21932" class="bug-id" target="_blank">CVE-2026-21932</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Oracle (Oracle Java SE)</span>
+            <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Unauthorized data modification via network access</span>
+          </div>
+          <div class="bug-row">
+            <a href="https://www.mozilla.org/en-US/security/advisories/mfsa2026-01/#:~:text=Reporter-,Mingi%20Jung%20(%EC%A0%95%EB%AF%BC%EA%B8%B0%EC%9E%85%EB%8B%88%EB%8B%A4),-Impact" class="bug-id" target="_blank">CVE-2026-0877</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Mozilla (Firefox Browser)</span>
+            <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">DOM security mitigation bypass</span>
+          </div>
+          <div class="bug-row">
+            <a href="https://cve.naver.com/detail/cve-2025-69235.html#:~:text=like%20to%20thank-,Mingi%20Jung.,-%C2%A9%20NAVER%20Corp" class="bug-id" target="_blank">CVE-2025-69235</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Naver (Whale Browser)</span>
+            <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Same-Origin Policy bypass</span>
+          </div>
+          <div class="bug-row">
+            <a href="https://cve.naver.com/detail/cve-2025-69234.html#:~:text=like%20to%20thank-,Mingi%20Jung.,-%C2%A9%20NAVER%20Corp" class="bug-id" target="_blank">CVE-2025-69234</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Naver (Whale Browser)</span>
+            <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Iframe sandbox escape</span>
+          </div>
+          <div class="bug-row">
+            <a href="https://cve.naver.com/detail/cve-2025-62585.html#:~:text=like%20to%20thank-,Mingi%20Jung.,-%C2%A9%20NAVER%20Corp" class="bug-id" target="_blank">CVE-2025-62585</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Naver (Whale Browser)</span>
+            <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">CSP bypass</span>
+          </div>
+          <div class="bug-row">
+            <a href="https://cve.naver.com/detail/cve-2025-62584.html#:~:text=like%20to%20thank-,Mingi%20Jung.,-%C2%A9%20NAVER%20Corp" class="bug-id" target="_blank">CVE-2025-62584</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Naver (Whale Browser)</span>
+            <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Same-Origin Policy bypass</span>
+          </div>
+          <div class="bug-row">
+            <a href="https://cve.naver.com/detail/cve-2025-62583.html#:~:text=like%20to%20thank-,Mingi%20Jung.,-%C2%A9%20NAVER%20Corp" class="bug-id" target="_blank">CVE-2025-62583</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Naver (Whale Browser)</span>
+            <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Iframe sandbox escape</span>
+          </div>
+          <div class="bug-row">
+            <a href="https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-53791#:~:text=Mingi%20Jung%20https%3A//github.com/mingijunggrape%20with%20WebSec%20https%3A//websec%2Dlab.github.io/" class="bug-id" target="_blank">CVE-2025-53791</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Microsoft (Edge Browser)</span>
+            <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Security feature bypass</span>
+          </div>
+          <div class="bug-row">
+            <a href="https://cve.naver.com/detail/cve-2025-53600.html#:~:text=like%20to%20thank-,Mingi%20Jung.,-%C2%A9%20NAVER%20Corp" class="bug-id" target="_blank">CVE-2025-53600</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Naver (Whale Browser)</span>
+            <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Same-Origin Policy bypass</span>
+          </div>
+          <div class="bug-row">
+            <a href="https://www.cve.org/CVERecord?id=CVE-2025-48980" class="bug-id" target="_blank">CVE-2025-48980</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Brave Software (Brave Browser)</span>
+            <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">SameSite cookie bypass</span>
+          </div>
+          <div class="bug-row-wrap" data-selected="true">
+            <div class="bug-row">
+              <a href="https://github.com/advisories/GHSA-h9w6-f932-gq62#:~:text=Credits-,mingijunggrape,-Reporter" class="bug-id" target="_blank">CVE-2025-32792</a>
+              <span class="bug-sep">—</span><span class="bug-issuer">Endo (Secure ECMAScript)</span>
+              <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Lexical scope exposure in SES sandbox</span>
+            </div>
+            <div class="bug-desc">
+              Discovered via Strategy 5 of our <strong>IEEE EuroS&amp;P 2026</strong> paper, <strong><em>SandVenture: Escaping JavaScript Sandboxes with Objective-driven Input Generation</em></strong>.
+              Web pages and extensions using ses and the Compartment API to evaluate
+              third-party code in an isolated environment inadvertently expose
+              const, let, and class bindings
+              declared in the top-level scope of a &lt;script&gt; tag to the
+              lexical scope of untrusted third-party code.
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="bug-group" data-bg="ack">
-      <p class="bug-category">Acknowledgement</p>
-      <div class="bug-list">
-        <div class="bug-row">
-          <a href="https://bugbounty.naver.com/hall-of-fame" class="bug-id" target="_blank">NBB-2026-0007</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Naver Corporation</span>
-        </div>
-        <div class="bug-row">
-          <a href="https://bugbounty.naver.com/hall-of-fame" class="bug-id" target="_blank">NBB-2025-0211</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Naver Corporation</span>
-        </div>
-        <div class="bug-row">
-          <a href="https://bugbounty.naver.com/hall-of-fame" class="bug-id" target="_blank">NBB-2025-0209</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Naver Corporation</span>
-        </div>
-        <div class="bug-row">
-          <a href="https://bugbounty.kakao.com/notice/halloffame" class="bug-id" target="_blank">KV-2025-186</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Kakao Corporation</span>
-        </div>
-        <div class="bug-row">
-          <a href="https://bugbounty.kakao.com/notice/halloffame" class="bug-id" target="_blank">KV-2025-185</a>
-          <span class="bug-sep">—</span><span class="bug-issuer">Kakao Corporation</span>
+      <div class="bug-group" data-bg="ack">
+        <p class="bug-category">Acknowledgement</p>
+        <div class="bug-list">
+          <div class="bug-row">
+            <a href="https://bugbounty.naver.com/hall-of-fame" class="bug-id" target="_blank">NBB-2026-0007</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Naver Corporation</span>
+          </div>
+          <div class="bug-row">
+            <a href="https://bugbounty.naver.com/hall-of-fame" class="bug-id" target="_blank">NBB-2025-0211</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Naver Corporation</span>
+          </div>
+          <div class="bug-row">
+            <a href="https://bugbounty.naver.com/hall-of-fame" class="bug-id" target="_blank">NBB-2025-0209</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Naver Corporation</span>
+          </div>
+          <div class="bug-row">
+            <a href="https://bugbounty.kakao.com/notice/halloffame" class="bug-id" target="_blank">KV-2025-186</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Kakao Corporation</span>
+          </div>
+          <div class="bug-row">
+            <a href="https://bugbounty.kakao.com/notice/halloffame" class="bug-id" target="_blank">KV-2025-185</a>
+            <span class="bug-sep">—</span><span class="bug-issuer">Kakao Corporation</span>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="page">
-    <h2 class="sec-head">Contact</h2>
-    <div>
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="sec-head">Contact</h2>
       <div class="contact-row">
         <span class="ck">Email</span>
         <span><a href="mailto:wjdaslrl4475@unist.ac.kr">wjdaslrl4475@unist.ac.kr</a></span>
@@ -535,31 +508,17 @@
         <span class="ck">GitHub</span>
         <span><a href="https://github.com/mingijunggrape" target="_blank">github.com/mingijunggrape</a></span>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<footer>
-  <div class="page">
-    <span>© 2026 Mingi Jung. All rights reserved.</span>
-    <span>Hosted on GitHub Pages</span>
-  </div>
-</footer>
+    <footer>
+      <span>© 2026 Mingi Jung. All rights reserved.</span>
+      <span>Hosted on GitHub Pages</span>
+    </footer>
+
+  </main>
+</div>
 
 <script>
-  // ── Publications filter ──
-  document.querySelectorAll('#publications .f-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('#publications .f-btn').forEach(b => b.classList.remove('on'));
-      btn.classList.add('on');
-      const f = btn.dataset.f;
-      document.querySelectorAll('.pub-item').forEach(item => {
-        const show = f === 'all' || item.dataset.type === f;
-        item.style.display = show ? 'block' : 'none';
-      });
-    });
-  });
-
   // ── Security Bugs filter ──
   function applyBugFilter(bg) {
     document.querySelectorAll('#bugFilter .f-btn').forEach(b => b.classList.remove('on'));
@@ -602,36 +561,24 @@
   // ── Easter egg: 사진 5번 빠르게 클릭 → blog.html ──
   (function () {
     const frame = document.getElementById('photoFrame');
-    const dots  = [0,1,2,3,4].map(i => document.getElementById('dot' + i));
     const TOTAL = 5;
-    const WINDOW_MS = 800; // 클릭 간 허용 시간
+    const WINDOW_MS = 800;
     let count = 0;
     let timer = null;
 
-    function reset() {
-      count = 0;
-      dots.forEach(d => d.classList.remove('lit'));
-    }
+    function reset() { count = 0; }
 
     frame.addEventListener('click', () => {
       clearTimeout(timer);
       count++;
-
-      // 도트 하나씩 켜기
-      if (count <= TOTAL) dots[count - 1].classList.add('lit');
-
       if (count >= TOTAL) {
-        // 5번 달성 → 페이드 후 이동
         frame.style.opacity = '0';
         setTimeout(() => { window.location.href = 'blog.html'; }, 300);
         return;
       }
-
-      // 800ms 안에 다음 클릭 없으면 리셋
       timer = setTimeout(reset, WINDOW_MS);
     });
 
-    // 뒤로가기로 돌아왔을 때 사진 복구
     window.addEventListener('pageshow', () => {
       frame.style.opacity = '1';
       reset();
