@@ -158,10 +158,15 @@
     .edu-school { font-size: 16px; color: var(--muted); }
     .edu-note { font-size: 14.5px; color: var(--faint); font-style: italic; margin-top: 2px; }
 
-    /* Bio */
-    .bio-text {
-      font-size: 17px; color: var(--sub);
-      line-height: 1.85; margin-bottom: 0;
+    /* Interests */
+    .interest-list {
+      list-style: none; display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .interest-list li {
+      font-size: 14px; color: var(--accent);
+      background: #eef3f9;
+      padding: 4px 14px; border-radius: 20px;
+      letter-spacing: 0.02em;
     }
 
     /* Publications */
@@ -287,8 +292,7 @@
     <hr class="sb-divider">
 
     <p class="sb-interests">
-      Web &amp; Browser Security<br>
-      Vulnerability Discovery<br>
+      Web &amp; Mobile Security<br>
       CTF · Bug Bounty
     </p>
 
@@ -315,16 +319,15 @@
   <!-- ── 메인 콘텐츠 ── -->
   <main class="main">
 
-    <!-- BIO -->
-    <section id="bio">
-      <p class="bio-text">
-        I am a Master's student at the <a href="https://websec-lab.github.io/">Web Security Lab (WebSec Lab)</a>
-        at <a href="https://www.unist.ac.kr/unist/index.do">UNIST</a>.
-        My research focuses on Web Security and Browser Security, particularly on discovering emerging vulnerability classes
-        and building automated systems to identify novel attack vectors.
-        Besides, I am an active CTF player and bug bounty hunter with a strong interest in practical offensive security techniques.
-        I enjoy exploring diverse attack scenarios and experimenting with real-world exploitation techniques.
-      </p>
+    <!-- INTERESTS -->
+    <section id="interests">
+      <h2 class="sec-head">Interests</h2>
+      <ul class="interest-list">
+        <li>Web &amp; Mobile Security</li>
+        <li>Browser Security</li>
+        <li>Jailbreaking &amp; Rooting</li>
+        <li>CTF &amp; Bug Bounty</li>
+      </ul>
     </section>
 
     <!-- EDUCATION -->
