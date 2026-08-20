@@ -194,6 +194,18 @@
     .pub-venue { font-size: 15.5px; color: var(--sub); }
     .pub-venue em { font-style: italic; }
     .pub-venue strong { font-weight: 600; color: var(--text); }
+    .pub-honor {
+      font-size: 15px; color: var(--sub); margin-top: 4px;
+      display: flex; align-items: baseline; gap: 7px;
+    }
+    .pub-honor strong { font-weight: 600; color: var(--text); }
+    .pub-badge {
+      flex: none; font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase;
+      font-weight: 600; color: var(--accent);
+      border: 1px solid var(--accent); border-radius: 2px;
+      padding: 0 5px; line-height: 1.5;
+    }
+
     .pub-links { display: flex; gap: 8px; margin-top: 5px; }
     .pub-lnk {
       font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase;
@@ -293,7 +305,8 @@
 
     <p class="sb-interests">
       Web Security<br>
-      Browser Security<br>
+      Mobile Security<br>
+      Pentesting &amp; Red Teaming<br>
       CTF · Bug Bounty
     </p>
 
@@ -325,7 +338,8 @@
       <h2 class="sec-head">Interests</h2>
       <ul class="interest-list">
         <li>Web Security</li>
-        <li>Browser Security</li>
+        <li>Mobile Security</li>
+        <li>Pentesting &amp; Red Teaming</li>
         <li>CTF &amp; Bug Bounty</li>
       </ul>
     </section>
@@ -362,12 +376,23 @@
         <div class="pub-item">
           <p class="pub-title"><span class="pub-num">[1]</span> BUIzz: Finding Policy Enforcement Bugs via Interaction Simulation on the Browser User Interface</p>
           <p class="pub-authors"><strong>Mingi Jung</strong>, Donggyu Kim, Mijung Kim, Seongil Wi</p>
-          <p class="pub-venue">In <em>Proceedings of the USENIX Security Symposium (<strong>USENIX Security</strong>)</em>, 2026</p>
+          <p class="pub-venue">In <em>Proceedings of the USENIX Security Symposium (<strong>USENIX Security</strong>)</em>, 2026 (<strong>Acceptance Rate: 11.96%</strong>)</p>
+          <p class="pub-honor"><span class="pub-badge">Award</span><span><strong>USENIX Internet Defense Prize</strong> (Top 0.8%, 3/362) &middot; funded by Meta &middot; $25,000 Gift Award</span></p>
+          <p class="pub-honor"><span class="pub-badge">Award</span><span><strong>Distinguished Paper Award Runner-Up</strong> (Top 6%, 22/362)</span></p>
+          <div class="pub-links">
+            <a class="pub-lnk" href="https://websec-lab.github.io/papers/usenixsecurity26-jung.pdf" target="_blank" rel="noopener">Paper</a>
+            <a class="pub-lnk" href="https://websec-lab.github.io/papers/usenixsecurity26-jung-slides.pdf" target="_blank" rel="noopener">Slides</a>
+            <a class="pub-lnk" href="https://github.com/WebSec-Lab/BUIzz" target="_blank" rel="noopener">Tool</a>
+          </div>
         </div>
         <div class="pub-item">
           <p class="pub-title"><span class="pub-num">[2]</span> SandVenture: Escaping JavaScript Sandboxes with Objective-driven Input Generation</p>
           <p class="pub-authors"><strong>Mingi Jung</strong>, Hyeon Heo, Seongil Wi</p>
           <p class="pub-venue">In <em>Proceedings of the IEEE European Symposium on Security and Privacy (<strong>IEEE EuroS&amp;P</strong>)</em>, 2026 (<strong>Acceptance Rate: 17.83%</strong>)</p>
+          <div class="pub-links">
+            <a class="pub-lnk" href="https://websec-lab.github.io/papers/eurosp26-jung.pdf" target="_blank" rel="noopener">Paper</a>
+            <a class="pub-lnk" href="https://github.com/WebSec-Lab/SandVenture" target="_blank" rel="noopener">Tool</a>
+          </div>
         </div>
       </div>
     </section>
@@ -376,6 +401,14 @@
     <section id="honors">
       <h2 class="sec-head">Honors</h2>
       <div class="award-list">
+        <div class="award-row">
+          <span class="award-name">USENIX Internet Defense Prize (Top 0.8%, 3/362) &mdash; $25,000 Gift Award, funded by Meta</span>
+          <span class="award-meta">USENIX Security &nbsp;&middot;&nbsp; 2026</span>
+        </div>
+        <div class="award-row">
+          <span class="award-name">Distinguished Paper Award Runner-Up (Top 6%, 22/362)</span>
+          <span class="award-meta">USENIX Security &nbsp;&middot;&nbsp; 2026</span>
+        </div>
         <div class="award-row">
           <span class="award-name">IBSM Award (Outstanding Graduate Student Award)</span>
           <span class="award-meta">UNIST &nbsp;·&nbsp; 2026.02.04</span>
@@ -396,6 +429,11 @@
       <div class="bug-group" data-bg="cve">
         <p class="bug-category">CVE</p>
         <div class="bug-list">
+          <div class="bug-row">
+            <a href="https://github.com/zauberzeug/nicegui/security/advisories/GHSA-955g-h32v-mvrr" class="bug-id" target="_blank">GHSA-955g-h32v-mvrr</a>
+            <span class="bug-sep">&mdash;</span><span class="bug-issuer">Zauberzeug (NiceGUI)</span>
+            <span class="bug-sep bug-full-desc">&mdash;</span><span class="bug-full-desc">XSS via prop injection in ColorPicker.set_color()</span>
+          </div>
           <div class="bug-row">
             <a href="https://github.com/aio-libs/aiohttp/security/advisories/GHSA-2vrm-gr82-f7m5" class="bug-id" target="_blank">CVE-2026-34514</a>
             <span class="bug-sep">—</span><span class="bug-issuer">aio-libs (aiohttp)</span>
@@ -446,10 +484,20 @@
             <span class="bug-sep">—</span><span class="bug-issuer">Naver (Whale Browser)</span>
             <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">Same-Origin Policy bypass</span>
           </div>
-          <div class="bug-row">
-            <a href="https://www.cve.org/CVERecord?id=CVE-2025-48980" class="bug-id" target="_blank">CVE-2025-48980</a>
-            <span class="bug-sep">—</span><span class="bug-issuer">Brave Software (Brave Browser)</span>
-            <span class="bug-sep bug-full-desc">—</span><span class="bug-full-desc">SameSite cookie bypass</span>
+          <div class="bug-row-wrap" data-selected="true">
+            <div class="bug-row">
+              <a href="https://www.cve.org/CVERecord?id=CVE-2025-48980" class="bug-id" target="_blank">CVE-2025-48980</a>
+              <span class="bug-sep">&mdash;</span><span class="bug-issuer">Brave Software (Brave Browser)</span>
+              <span class="bug-sep bug-full-desc">&mdash;</span><span class="bug-full-desc">SameSite cookie bypass</span>
+            </div>
+            <div class="bug-desc">
+              Discovered by our <strong>USENIX Security 2026</strong> paper, <strong><em>BUIzz: Finding Policy Enforcement Bugs via Interaction Simulation on the Browser User Interface</em></strong>.
+              In Brave Browser Desktop prior to 1.83.10 with the split view feature
+              enabled, the &ldquo;Open Link in Split View&rdquo; context menu item did not respect the
+              SameSite cookie attribute, so SameSite=Strict cookies
+              were sent on a cross-site navigation triggered through this user
+              interface path.
+            </div>
           </div>
           <div class="bug-row-wrap" data-selected="true">
             <div class="bug-row">
