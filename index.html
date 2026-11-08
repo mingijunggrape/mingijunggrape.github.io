@@ -142,6 +142,11 @@
       display: inline-block;
     }
 
+    /* About */
+    .about-text {
+      font-size: 17px; color: var(--sub); line-height: 1.8;
+    }
+
     /* Education */
     .edu-list { display: flex; flex-direction: column; }
     .edu-row {
@@ -305,8 +310,7 @@
 
     <p class="sb-interests">
       Web Security<br>
-      Browser Security<br>
-      AI Agent Security
+      Browser Security
     </p>
 
     <div class="sb-contact">
@@ -321,6 +325,7 @@
     </div>
 
     <nav class="sb-nav">
+      <a href="#about">About</a>
       <a href="#education">Education</a>
       <a href="#experience">Experience</a>
       <a href="#publications">Publications</a>
@@ -333,13 +338,24 @@
   <!-- ── 메인 콘텐츠 ── -->
   <main class="main">
 
+    <!-- ABOUT -->
+    <section id="about">
+      <h2 class="sec-head">About</h2>
+      <p class="about-text">
+        Currently, I am a student in the Web Security Lab
+        (<a href="https://websec-lab.github.io/index.html">WebSec Lab</a>) at
+        <a href="https://www.unist.ac.kr/unist/index.do">UNIST</a> (Ulsan National Institute
+        of Science and Technology). My primary interest lies in the discovery and analysis of
+        security vulnerabilities in web and browser systems through AI techniques.
+      </p>
+    </section>
+
     <!-- INTERESTS -->
     <section id="interests">
       <h2 class="sec-head">Interests</h2>
       <ul class="interest-list">
         <li>Web Security</li>
         <li>Browser Security</li>
-        <li>AI Agent Security</li>
       </ul>
     </section>
 
